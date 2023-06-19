@@ -19,5 +19,4 @@ RUN dotnet publish "Marek.Presentation.csproj" -c Release -o /app/publish /p:Use
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY appsettings.json .
 ENTRYPOINT ["dotnet", "Marek.Presentation.dll"]
