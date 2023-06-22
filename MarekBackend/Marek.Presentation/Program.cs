@@ -20,6 +20,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
+builder.Services.AddCors(options => options.AddPolicy(name: "FrontEnd",
+    policy =>
+    {
+        policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+    }));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("FrontEnd");
 
 app.UseAuthorization();
 
