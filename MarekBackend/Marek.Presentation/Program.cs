@@ -1,4 +1,5 @@
 using Marek.Application.Repositories;
+using Marek.Application.Services;
 using Marek.Infrastructure;
 using Marek.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 // Data repositories
+builder.Services.AddHttpClient();
 builder.Services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+builder.Services.Configure<ApiConfig>(builder.Configuration.GetSection("ApiConfig"));
+builder.Services.AddTransient<ICoachService, CoachService>();
+builder.Services.AddTransient<IGetApiInfoService, GetApiInfoService>();
 
 builder.Services.AddCors(options => options.AddPolicy(name: "FrontEnd",
     policy =>
-    {
-        policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
-    }));
+{
+    policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
