@@ -1,3 +1,4 @@
+using Marek.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Marek.Presentation.Controllers
@@ -11,11 +12,17 @@ namespace Marek.Presentation.Controllers
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ICoachService _transfersService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IGetApiInfoService _testService;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ICoachService coachService, IGetApiInfoService testService)
         {
             _logger = logger;
+            _transfersService = coachService
+                                ?? throw new ArgumentNullException(nameof(CoachService));
+            _testService = testService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +35,34 @@ namespace Marek.Presentation.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("transfersLev")]
+        public async Task<IActionResult> GetTransfersLev()
+        {
+            try
+            {
+                var transfers = await _transfersService.GetDataFromApi();
+                return Ok(transfers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("team")]
+        public async Task<IActionResult> GetTeam()
+        {
+            try
+            {
+                var team = await _testService.GetApiResponse<string>("https://api-football-v1.p.rapidapi.com/v3/players?team=8543&season=2022");
+                return Ok(team);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
     }
 }
