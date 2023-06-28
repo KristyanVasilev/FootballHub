@@ -1,5 +1,7 @@
 ﻿namespace Marek.Application.Services
 {
+    using Marek.Application.Config;
+    using Marek.Application.Interfaces;
     using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
 

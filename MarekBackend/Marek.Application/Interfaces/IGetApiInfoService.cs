@@ -1,4 +1,4 @@
-﻿namespace Marek.Application.Services
+﻿namespace Marek.Application.Interfaces
 {
     public interface IGetApiInfoService
     {

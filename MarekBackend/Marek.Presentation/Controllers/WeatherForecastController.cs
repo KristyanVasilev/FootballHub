@@ -1,3 +1,4 @@
+using Marek.Application.Interfaces;
 using Marek.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,7 @@ namespace Marek.Presentation.Controllers
         {
             try
             {
-                var transfers = await _transfersService.GetDataFromApi();
+                var transfers = await _transfersService.GetCoachInfo();
                 return Ok(transfers);
             }
             catch (Exception ex)

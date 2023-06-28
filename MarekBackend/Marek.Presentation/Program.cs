@@ -1,3 +1,5 @@
+using Marek.Application.Config;
+using Marek.Application.Interfaces;
 using Marek.Application.Repositories;
 using Marek.Application.Services;
 using Marek.Infrastructure;
