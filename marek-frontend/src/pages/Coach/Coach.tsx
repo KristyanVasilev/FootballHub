@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { urlCoach } from '../endpoint';
+import React, { useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { urlCoach } from "../../endpoint";
 
 interface Coach {
   firstName: string;
@@ -27,12 +27,10 @@ const CoachInfo = () => {
   const [coach, setCoach] = useState<Coach>();
 
   useEffect(() => {
-    axios
-      .get(urlCoach)
-      .then((response: AxiosResponse<Coach>) => {
-        setCoach(response.data);
-        console.log(response.data);
-      });
+    axios.get(urlCoach).then((response: AxiosResponse<Coach>) => {
+      setCoach(response.data);
+      console.log(response.data);
+    });
   }, []);
 
   return (

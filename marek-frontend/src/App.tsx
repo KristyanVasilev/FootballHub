@@ -1,15 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import WheatherForecast from './components/WheatherForecast';
-import Coach from './components/Coach';
+import React from "react";
+import Coach from "./pages/Coach/Coach";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import NavBar from "./components/NavBar/NavBar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Test from "./pages/Coach/Test";
+import Standings from "./pages/Standings/Standings";
+import Test1 from "./pages/Standings/Standings";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-<Coach></Coach>
-      </header>
+      <Router>
+        <NavBar></NavBar>
+        <Routes>
+          <Route path="/" element={<Test />} />
+          <Route path="/coach" element={<Coach />} />
+          <Route path="/standings" element={<Standings />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
