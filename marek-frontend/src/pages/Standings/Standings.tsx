@@ -25,7 +25,7 @@ const Standings = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7043/Coach/GetStandingInfo")
+      .get("https://localhost:7043/Standing/GetStandingInfo")
       .then((response: AxiosResponse<APIResponse>) => {
         setStanding(response.data);
       })
