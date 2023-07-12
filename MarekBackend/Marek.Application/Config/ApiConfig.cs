@@ -5,5 +5,6 @@
         public string RapidApiKey { get; set; } = null!;
         public string RapidApiHost { get; set; } = null!; 
         public string CoachApiUrl { get; set; } = null!;
+        public string StandingApiUrl { get; set; } = null!;
     }
 }
