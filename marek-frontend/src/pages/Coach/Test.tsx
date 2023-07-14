@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { urlCoach } from "../../endpoint";
+import { urlCoach } from "../../config/endpoint";
 import { Coach, CoachState } from "./types";
 import {
   Alert,

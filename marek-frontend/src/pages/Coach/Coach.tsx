@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { urlCoach } from "../../endpoint";
+import { urlCoach } from "../../config/endpoint";
 
 interface Coach {
   firstName: string;
