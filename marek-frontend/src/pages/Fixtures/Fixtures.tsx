@@ -17,6 +17,7 @@ import axios, { AxiosResponse } from "axios";
 import { APICurrentFixtureResponse, APILatestFixturesResponse } from "./types";
 import CurrentFixture from "./CurrentFixture";
 import LatestFixtures from "./LatestFixtures";
+import { urlCurrentFixture, urlLatestFixtures } from "../../config/endpoint";
 
 const Img = styled("img")({
   display: "flex",
@@ -37,7 +38,7 @@ const Fixtures = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7043/Coach/GetNExtInfo")
+      .get(urlCurrentFixture)
       .then((response: AxiosResponse<APICurrentFixtureResponse>) => {
         setCurrentFixture(response.data);
         console.log(response);
@@ -50,7 +51,7 @@ const Fixtures = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7043/Coach/GetftInfo")
+      .get(urlLatestFixtures)
       .then((response: AxiosResponse<APILatestFixturesResponse[]>) => {
         setLatestFixture(response.data);
         console.log(response);

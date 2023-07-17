@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from "axios";
 import { columns } from "./config";
 import { APIResponse } from "./types";
 import StandingTable from "./StandingTable";
+import { urlStandings } from "../../config/endpoint";
 
 const Img = styled("img")({
   margin: "auto",
@@ -25,7 +26,7 @@ const Standings = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7043/Standing/GetStandingInfo")
+      .get(urlStandings)
       .then((response: AxiosResponse<APIResponse>) => {
         setStanding(response.data);
       })

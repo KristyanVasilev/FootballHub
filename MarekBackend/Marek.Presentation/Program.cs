@@ -27,6 +27,7 @@ builder.Services.Configure<ApiConfig>(builder.Configuration.GetSection("ApiConfi
 builder.Services.AddTransient<IGetApiInfoService, GetApiInfoService>();
 builder.Services.AddTransient<ICoachService, CoachService>();
 builder.Services.AddTransient<IStandingService, StandingService>();
+builder.Services.AddTransient<IFixtureService, FixturesService>();
 
 builder.Services.AddCors(options => options.AddPolicy(name: "FrontEnd",
     policy =>
