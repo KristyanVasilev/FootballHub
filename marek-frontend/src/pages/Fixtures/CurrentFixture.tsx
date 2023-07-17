@@ -44,7 +44,7 @@ const CurrentFixture: React.FC<CurrentFixtureProps> = ({
           justifyContent="space-evenly"
           alignItems="flex-end"
         >
-          <Grid item>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Img src={currentFixture?.teams.home.logo} />
             <Typography
               variant="h5"
@@ -57,7 +57,7 @@ const CurrentFixture: React.FC<CurrentFixtureProps> = ({
               {currentFixture?.teams.home.name}
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Typography
               variant="h5"
               sx={{
@@ -69,7 +69,7 @@ const CurrentFixture: React.FC<CurrentFixtureProps> = ({
               vs
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Img src={currentFixture?.teams.away.logo} />
             <Typography
               variant="h5"

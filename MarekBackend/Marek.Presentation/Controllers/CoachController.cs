@@ -78,8 +78,8 @@
         {
             try
             {
-                var coach = await _fService.GetCurrentGameInfo();
-                return Ok(coach);
+                //var coach = await _fService.GetCurrentGameInfo();
+                return Ok();
             }
             catch (Exception ex)
             {

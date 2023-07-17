@@ -74,23 +74,23 @@ const LatestResultsComponent: React.FC<LatestFixturesProps> = ({
                       justifyContent="center"
                       spacing={5}
                     >
-                      <Grid item>
+                      <Grid item xs={2} sm={1}>
+                        <Img src={fixture.teams.home.logo} />
+                      </Grid>
+                      <Grid item xs={4} sm={2}>
                         <Typography variant="body2">
                           {fixture.teams.home.name}
                         </Typography>
                       </Grid>
-                      <Grid item>
-                        <Img src={fixture.teams.home.logo} />
-                      </Grid>
-                      <Grid item>
+                      <Grid item xs={12} sm={12} md={3} lg={3}>
                         <Typography variant="body2">
                           {`${fixture.goals.home} - ${fixture.goals.away}`}
                         </Typography>
                       </Grid>
-                      <Grid item>
+                      <Grid item xs={2} sm={1}>
                         <Img src={fixture.teams.away.logo} />
                       </Grid>
-                      <Grid item>
+                      <Grid item xs={4} sm={2}>
                         <Typography variant="body2">
                           {fixture.teams.away.name}
                         </Typography>
