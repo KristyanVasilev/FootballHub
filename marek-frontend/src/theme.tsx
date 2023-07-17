@@ -6,7 +6,7 @@ const theme = createTheme({
       main: "rgba(217, 30, 24)",
     },
     secondary: {
-      main: "rgba(30, 81, 123)",
+      main: "rgb(49, 20, 80)",
       light: "#B0C4DE",
     },
     background: {
@@ -37,7 +37,6 @@ const theme = createTheme({
     MuiTableBody: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgba(244, 239, 239)",
           padding: 2,
           fontWeight: "bold",
           color: "black",

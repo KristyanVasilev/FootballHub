@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, rgb(154, 73, 70) 7%, rgb(49, 20, 80) 70%);
 }
 
 code {
@@ -17,10 +18,10 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(30, 81, 123); /* Adjust the color as needed */
+  background-color: rgba(217, 30, 24); /* Adjust the color as needed */
   border-radius: 5px; /* Adjust the border radius as needed */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #eee; /* Adjust the color as needed */
+  background-color: "transperant"; /* Adjust the color as needed */
 }

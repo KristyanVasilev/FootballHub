@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import icon from "../../assets/icons/marek.png";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
+import theme from "../../theme";
 
 const pages = [
   "Fixtures",
@@ -115,7 +116,7 @@ const NavBar = () => {
                   onClick={handleCloseNavMenu}
                   sx={{
                     "&.active": {
-                      color: "rgba(30, 81, 123)",
+                      color: theme.palette.secondary.light,
                     },
                   }}
                 >
@@ -155,7 +156,7 @@ const NavBar = () => {
                   display: "block",
                   fontWeight: 800,
                   "&.active": {
-                    color: "rgba(30, 81, 123)",
+                    color: theme.palette.secondary.light,
                   },
                 }}
               >

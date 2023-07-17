@@ -24,3 +24,7 @@ export interface Career {
 export interface TableColumn {
   label: string;
 }
+
+export interface CurrentGameProps {
+  label: string;
+}
