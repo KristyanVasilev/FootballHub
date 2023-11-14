@@ -7,6 +7,8 @@ import Standings from "./pages/Standings/Standings";
 import Footer from "./components/Footer/Footer";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Fixtures from "./pages/Fixtures/Fixtures";
+import Chat from "./pages/Chat/Chat";
+import MyForm from "./pages/Chat/MyForm";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/coach" element={<Coach />} />
         <Route path="/standings" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />
+        <Route path="/players" element={<MyForm />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer></Footer>
