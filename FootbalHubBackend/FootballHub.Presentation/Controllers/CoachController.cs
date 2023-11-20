@@ -32,6 +32,7 @@
         }
 
         [HttpGet("GetfInfo")]
+        [ResponseCache(Duration = 259200)]
         public async Task<IActionResult> GetfInfo()
         {
             try
@@ -45,6 +46,7 @@
             }
         }
         [HttpGet("GetftInfo")]
+        [ResponseCache(Duration = 259200)]
         public async Task<IActionResult> GetftInfo()
         {
             try
@@ -59,6 +61,7 @@
             }
         }
         [HttpGet("GetNExtInfo")]
+        [ResponseCache(Duration = 259200)]
         public async Task<IActionResult> GetNExtInfo()
         {
             try

@@ -28,6 +28,7 @@ builder.Services.AddTransient<IGetApiInfoService, GetApiInfoService>();
 builder.Services.AddTransient<ICoachService, CoachService>();
 builder.Services.AddTransient<IStandingService, StandingService>();
 builder.Services.AddTransient<IFixtureService, FixturesService>();
+builder.Services.AddTransient<ITeamService, TeamService>();
 builder.Services.AddSignalR();
 
 builder.Services.AddCors(options => options.AddPolicy(name: "FrontEnd",

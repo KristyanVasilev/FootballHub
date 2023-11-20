@@ -1,4 +1,5 @@
 using FootballHub.Application.Interfaces;
+using FootballHub.Application.Models.PlayerApiModels;
 using FootballHub.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,7 +58,7 @@ namespace FootballHub.Presentation.Controllers
         {
             try
             {
-                var team = await _testService.GetApiResponse<string>("https://api-football-v1.p.rapidapi.com/v3/players?team=8543&season=2022");
+                var team = await _testService.GetApiResponse<RotoObject>("https://api-football-v1.p.rapidapi.com/v3/players?team=8543&season=2023");
                 return Ok(team);
             }
             catch (Exception ex)

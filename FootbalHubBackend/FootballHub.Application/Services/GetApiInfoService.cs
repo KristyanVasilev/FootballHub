@@ -25,6 +25,7 @@
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(body);
                 return JsonConvert.DeserializeObject<T>(body);
             }
         }
