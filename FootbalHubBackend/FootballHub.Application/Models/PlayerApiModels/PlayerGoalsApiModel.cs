@@ -1,6 +1,6 @@
 ﻿namespace FootballHub.Application.Models.PlayerApiModels
 {
-    public class Goals
+    public class PlayerGoalsApiModel
     {
         public int? Total { get; set; }
     }

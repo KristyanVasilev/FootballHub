@@ -3,6 +3,6 @@ namespace FootballHub.Application.Interfaces
 {
     public interface ITeamService
     {
-        Task<RotoObject> GetTeamInfo();
+        Task<PlayerRotoObject> GetPlayersInfo();
     }
 }

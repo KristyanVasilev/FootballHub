@@ -58,7 +58,7 @@ namespace FootballHub.Presentation.Controllers
         {
             try
             {
-                var team = await _testService.GetApiResponse<RotoObject>("https://api-football-v1.p.rapidapi.com/v3/players?team=8543&season=2023");
+                var team = await _testService.GetApiResponse<PlayerRotoObject>("https://api-football-v1.p.rapidapi.com/v3/players?team=8543&season=2023");
                 return Ok(team);
             }
             catch (Exception ex)

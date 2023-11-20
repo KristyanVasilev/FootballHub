@@ -1,6 +1,6 @@
 ﻿namespace FootballHub.Application.Models.PlayerApiModels
 {
-    public class Games
+    public class PlayerGamesApiModel
     {
         public int? Appearences { get; set; }
         public int? Lineups { get; set; }

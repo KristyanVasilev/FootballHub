@@ -67,7 +67,6 @@
             try
             {
                 var coach = await _fService.GetCurrentGameInfo();
-                //var coach = "{\r\n  \"fixture\": {\r\n    \"id\": \"1039109\",\r\n    \"referee\": null,\r\n    \"timezone\": \"UTC\",\r\n    \"date\": \"2023-07-18T15:30:00+00:00\",\r\n    \"timestamp\": 1689694200,\r\n    \"periods\": {\r\n      \"first\": null,\r\n      \"second\": null\r\n    },\r\n    \"venue\": {\r\n      \"id\": \"11660\",\r\n      \"name\": \"Efbet Arena\",\r\n      \"city\": \"Burgas\"\r\n    },\r\n    \"status\": {\r\n      \"long\": \"Not Started\",\r\n      \"short\": \"NS\",\r\n      \"elapsed\": null\r\n    }\r\n  },\r\n  \"teams\": {\r\n    \"home\": {\r\n      \"id\": \"8530\",\r\n      \"name\": \"Chernomorets 1919 Burgas\",\r\n      \"logo\": \"https://media-2.api-sports.io/football/teams/8530.png\",\r\n      \"winner\": null\r\n    },\r\n    \"away\": {\r\n      \"id\": \"8543\",\r\n      \"name\": \"Marek\",\r\n      \"logo\": \"https://media-3.api-sports.io/football/teams/8543.png\",\r\n      \"winner\": null\r\n    }\r\n  },\r\n  \"goals\": {\r\n    \"home\": null,\r\n    \"away\": null\r\n  }\r\n}";
                 return Ok(coach);
             }
             catch (Exception ex)

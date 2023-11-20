@@ -3,24 +3,24 @@
     using FootballHub.Application.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
-    [ApiController]
-    [Route("[controller]")]
-    public class StandingController : Controller
+    public class TeamController : Controller
     {
-        private readonly IStandingService _standingService;
 
-        public StandingController(IStandingService standingService)
+        private readonly ITeamService _teamService;
+
+        public TeamController(ITeamService teamService)
         {
-            _standingService = standingService;
+            _teamService = teamService;
         }
 
-        [HttpGet("GetStandingInfo")]
+
+        [HttpGet("GetPlayersInfo")]
         [ResponseCache(Duration = 259200)]
-        public async Task<IActionResult> GetStandingInfo()
+        public async Task<IActionResult> GetTeamInfo()
         {
             try
             {
-                var coach = await _standingService.GetStandingInfo();
+                var coach = await _teamService.GetPlayersInfo();
                 return Ok(coach);
             }
             catch (Exception ex)

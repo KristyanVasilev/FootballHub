@@ -16,13 +16,13 @@ namespace FootballHub.Application.Services
             _apiConfig = apiConfigOptions.Value;
         }
 
-        public async Task<RotoObject> GetTeamInfo()
+        public async Task<PlayerRotoObject> GetPlayersInfo()
         {
             try
             {
-                var originalData = await _getApiInfoService.GetApiResponse<RotoObject>(_apiConfig.TeamApiUrl);
+                var players = await _getApiInfoService.GetApiResponse<PlayerRotoObject>(_apiConfig.TeamApiUrl);
 
-                return originalData;
+                return players;
             }
             catch (Exception ex)
             {
