@@ -5,22 +5,22 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class StandingController : Controller
+    public class StandingsController : Controller
     {
-        private readonly IStandingService _standingService;
+        private readonly IStandingsService _standingService;
 
-        public StandingController(IStandingService standingService)
+        public StandingsController(IStandingsService standingService)
         {
             _standingService = standingService;
         }
 
-        [HttpGet("GetStandingInfo")]
+        [HttpGet("GetStandingsInfo")]
         [ResponseCache(Duration = 259200)]
-        public async Task<IActionResult> GetStandingInfo()
+        public async Task<IActionResult> GetStandingsInfo()
         {
             try
             {
-                var coach = await _standingService.GetStandingInfo();
+                var coach = await _standingService.GetStandingsInfo();
                 return Ok(coach);
             }
             catch (Exception ex)

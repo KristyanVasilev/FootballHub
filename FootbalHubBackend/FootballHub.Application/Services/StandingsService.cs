@@ -5,22 +5,22 @@
     using FootballHub.Application.Models.StandingsDataModels;
     using Microsoft.Extensions.Options;
 
-    public class StandingService : IStandingService
+    public class StandingsService : IStandingsService
     {
         private readonly IGetApiInfoService _getApiInfoService;
         private readonly ApiConfig _apiConfig;
 
-        public StandingService(IGetApiInfoService getApiInfoService, IOptions<ApiConfig> apiConfigOptions)
+        public StandingsService(IGetApiInfoService getApiInfoService, IOptions<ApiConfig> apiConfigOptions)
         {
             _getApiInfoService = getApiInfoService;
             _apiConfig = apiConfigOptions.Value;
         }
 
-        public async Task<APIResponseDataModel> GetStandingInfo()
+        public async Task<StandingsRotoObject> GetStandingsInfo()
         {
             try
             {
-                var originalData = await _getApiInfoService.GetApiResponse<APIResponseDataModel>(_apiConfig.StandingApiUrl);
+                var originalData = await _getApiInfoService.GetApiResponse<StandingsRotoObject>(_apiConfig.StandingsApiUrl);
                                  
                 return originalData;
             }

@@ -3,6 +3,8 @@
     using FootballHub.Application.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
+    [ApiController]
+    [Route("[controller]")]
     public class TeamController : Controller
     {
 

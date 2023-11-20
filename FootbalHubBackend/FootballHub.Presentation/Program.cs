@@ -26,7 +26,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.Configure<ApiConfig>(builder.Configuration.GetSection("ApiConfig"));
 builder.Services.AddTransient<IGetApiInfoService, GetApiInfoService>();
 builder.Services.AddTransient<ICoachService, CoachService>();
-builder.Services.AddTransient<IStandingService, StandingService>();
+builder.Services.AddTransient<IStandingsService, StandingsService>();
 builder.Services.AddTransient<IFixtureService, FixturesService>();
 builder.Services.AddTransient<ITeamService, TeamService>();
 builder.Services.AddSignalR();
