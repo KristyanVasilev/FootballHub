@@ -66,12 +66,11 @@ const StandingTable: React.FC<CustomTableProps> = ({ columns, standings }) => {
                     <TableCell
                       sx={{
                         backgroundColor:
-                          standing.rank === "1" || standing.rank === "2"
+                          standing.rank === 1 || standing.rank === 2
                             ? theme.palette.success.main
-                            : parseInt(standing.rank) >
-                              standingsArray.length - 4
+                            : standing.rank > standingsArray.length - 4
                             ? theme.palette.primary.main
-                            : standing.rank === "3"
+                            : standing.rank === 3
                             ? theme.palette.secondary.main
                             : "inherit",
                       }}

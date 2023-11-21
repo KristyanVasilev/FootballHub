@@ -21,7 +21,7 @@ export interface TeamStats {
 }
 
 export interface Standing {
-  rank: string;
+  rank: number;
   team: Team;
   points: string;
   goalsDiff: string;
