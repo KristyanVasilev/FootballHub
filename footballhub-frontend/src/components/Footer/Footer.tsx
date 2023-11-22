@@ -19,21 +19,33 @@ const Footer = () => {
           <Box textAlign="center" pb={{ xs: 3, sm: 2 }}>
             <Grid container spacing={2} justifyContent="center">
               <Grid item>
-                <Link href={MAREK_MEDIA_URLS.facebook}>
+                <Link
+                  href={MAREK_MEDIA_URLS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FacebookIcon
                     style={{ fontSize: 30, marginRight: 10, color: "white" }}
                   />
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={MAREK_MEDIA_URLS.youtube}>
+                <Link
+                  href={MAREK_MEDIA_URLS.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <YouTubeIcon
                     style={{ fontSize: 30, marginRight: 10, color: "white" }}
                   />
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={MAREK_MEDIA_URLS.instagram}>
+                <Link
+                  href={MAREK_MEDIA_URLS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <InstagramIcon style={{ fontSize: 30, color: "white" }} />
                 </Link>
               </Grid>

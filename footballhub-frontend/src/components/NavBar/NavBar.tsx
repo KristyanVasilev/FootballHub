@@ -17,15 +17,7 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import theme from "../../theme";
 
-const pages = [
-  "Fixtures",
-  "Team",
-  "Players",
-  "Calendar",
-  "News",
-  "Coach",
-  "Standings",
-];
+const pages = ["Fixtures", "News", "Team", "Standings", "Shop", "History"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const NavBar = () => {

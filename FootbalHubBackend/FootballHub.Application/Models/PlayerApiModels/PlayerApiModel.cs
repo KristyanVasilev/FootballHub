@@ -9,6 +9,7 @@
         public int? Age { get; set; }
         public PlayerBirthApiModel Birth { get; set; } = null!;
         public string Nationality { get; set; } = null!;
+        public string Photo { get; set; } = null!;
         public bool Injured { get; set; }
     }
 }
