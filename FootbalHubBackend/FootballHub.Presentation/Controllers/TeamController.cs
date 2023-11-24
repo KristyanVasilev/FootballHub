@@ -16,14 +16,15 @@
         }
 
 
-        [HttpGet("GetPlayersInfo")]
-        [ResponseCache(Duration = 259200)]
+        [HttpGet("GetPlayersInfo2")]
+       // [ResponseCache(Duration = 259200)]
         public async Task<IActionResult> GetTeamInfo()
         {
             try
             {
-                var coach = await _teamService.GetPlayersInfo();
-                return Ok(coach);
+                var players = await _teamService.GetPlayersInfo();
+                var test = await _teamService.Test();
+                return Ok(players);
             }
             catch (Exception ex)
             {
