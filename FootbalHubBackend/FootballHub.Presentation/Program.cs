@@ -29,7 +29,7 @@ builder.Services.AddTransient<ICoachService, CoachService>();
 builder.Services.AddTransient<IStandingsService, StandingsService>();
 builder.Services.AddTransient<IFixtureService, FixtureService>();
 builder.Services.AddTransient<ITeamService, TeamService>();
-builder.Services.AddHostedService<PlayerUpdateService>();
+//builder.Services.AddHostedService<PlayerUpdateService>();
 builder.Services.AddSignalR();
 
 builder.Services.AddCors(options => options.AddPolicy(name: "FrontEnd",

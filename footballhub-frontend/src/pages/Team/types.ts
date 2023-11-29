@@ -61,3 +61,9 @@ export interface PlayerCardsApiModel {
   yellowRed: number | null;
   red: number | null;
 }
+
+export interface Player {
+  id: number;
+  name: string;
+  photo: string;
+}

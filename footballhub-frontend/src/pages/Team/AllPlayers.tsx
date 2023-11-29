@@ -1,28 +1,15 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
-import {
-  createTheme,
-  makeStyles,
-  styled,
-  ThemeProvider,
-} from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import { Player } from "./types";
+import axios, { AxiosResponse } from "axios";
+import { urlAllPlayers } from "../../config/endpoint";
+import { useEffect } from "react";
+import PlayerModal from "./PlayerModal";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -45,19 +32,37 @@ const TextOverlay = styled("div")({
   color: "white",
 });
 
-export default function Album() {
-  const navigate = useNavigate(); // Use useNavigate hook for navigation
+export default function AllPlayers() {
+  const [players, setPlayers] = React.useState<Player[]>();
+  const [selectedPlayer, setSelectedPlayer] = React.useState<Player | null>(
+    null
+  );
 
-  const handleCardClick = () => {
-    navigate("/coach");
+  const handleCardClick = (playerId: number) => {
+    const clickedPlayer = players?.find((player) => player.id === playerId);
+    setSelectedPlayer(clickedPlayer || null);
   };
+  const handleCloseModal = () => {
+    setSelectedPlayer(null);
+  };
+  useEffect(() => {
+    axios
+      .get(urlAllPlayers)
+      .then((response: AxiosResponse<Player[]>) => {
+        setPlayers(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container sx={{ py: 8 }} maxWidth="lg">
         <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={3}>
+          {players?.map((player) => (
+            <Grid item key={player.id} xs={12} sm={6} md={3}>
               <ShakeCard
                 sx={{
                   height: "100%",
@@ -66,7 +71,7 @@ export default function Album() {
                   flexDirection: "column",
                   position: "relative",
                 }}
-                onClick={handleCardClick}
+                onClick={() => handleCardClick(player.id)}
               >
                 <CardMedia
                   component="div"
@@ -82,15 +87,12 @@ export default function Album() {
                   }}
                 >
                   <img
-                    src="https://marek1915.com/wp-content/uploads/2023/07/plamen-mladenov-removebg-preview.png"
-                    alt="Card background"
+                    src={player.photo}
+                    alt={`Card background for ${player.name}`}
                   />
                   <TextOverlay>
                     <Typography variant="h4" fontWeight="bold">
-                      Name
-                    </Typography>
-                    <Typography variant="h6" fontWeight="bold">
-                      Position
+                      {player.name}
                     </Typography>
                   </TextOverlay>
                 </CardMedia>
@@ -98,6 +100,9 @@ export default function Album() {
             </Grid>
           ))}
         </Grid>
+        {selectedPlayer && (
+          <PlayerModal player={selectedPlayer} onClose={handleCloseModal} />
+        )}
       </Container>
     </ThemeProvider>
   );

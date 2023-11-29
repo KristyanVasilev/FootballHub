@@ -17,18 +17,45 @@
 
 
         [HttpGet("GetPlayersInfo2")]
-       // [ResponseCache(Duration = 259200)]
+        [ResponseCache(Duration = 259200)]
         public async Task<IActionResult> GetTeamInfo()
         {
             try
             {
                 var players = await _teamService.GetPlayersInfo();
-                var test = await _teamService.Test();
                 return Ok(players);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("GetPlayers")]
+        public IActionResult GetAllPlayers()
+        {
+            try
+            {
+                var players = _teamService.GetAllPlayers();
+                return Ok(players);
+            }
+            catch (InvalidCastException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllPlayers")]
+        public IActionResult GetPlayers()
+        {
+            try
+            {
+                var players = _teamService.GetAllPlayers();
+                return Ok(players);
+            }
+            catch (InvalidCastException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }
