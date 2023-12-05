@@ -16,13 +16,17 @@ import icon from "../../assets/icons/marek.png";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import theme from "../../theme";
+import { useAuth } from "../../Context/AuthContext";
+import Login from "../Auth/Login";
+import Logout from "../Auth/Logout";
 
-const pages = ["Fixtures", "News", "Team", "Standings", "Shop", "History"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Fixtures", "Team", "Standings", "Shop", "News"];
+const settings = [""];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const { user } = useAuth();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -71,7 +75,7 @@ const NavBar = () => {
             MAREK
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -135,7 +139,12 @@ const NavBar = () => {
           >
             MAREK
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
@@ -156,11 +165,10 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={user?.imageUrl} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -179,6 +187,18 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              {user ? (
+                <>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{`Welcome, ${user.name}`}</Typography>
+                  </MenuItem>
+                  <Logout />
+                </>
+              ) : (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Login />
+                </MenuItem>
+              )}
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
