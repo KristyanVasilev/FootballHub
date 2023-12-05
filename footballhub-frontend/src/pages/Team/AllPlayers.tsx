@@ -4,22 +4,22 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import { styled, ThemeProvider } from "@mui/material/styles";
 import { Player } from "./types";
 import axios, { AxiosResponse } from "axios";
 import { urlAllPlayers } from "../../config/endpoint";
 import { useEffect } from "react";
 import PlayerModal from "./PlayerModal";
-
+import theme from "../../theme";
+import { useAuth } from "../../Context/AuthContext";
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
 
 const ShakeCard = styled(Card)({
   transition: "transform 0.2s ease-out",
   borderRadius: "5%",
   background: "rgba(0, 0, 0, 0.5)",
   "&:hover": {
-    transform: "scale(1.05)", // Adjust the translation for the shake effect
+    transform: "scale(1.05)",
   },
 });
 const TextOverlay = styled("div")({
@@ -27,7 +27,7 @@ const TextOverlay = styled("div")({
   bottom: 0,
   left: 0,
   width: "100%",
-  background: "rgba(0, 0, 0, 0.5)", // Dark background with 50% opacity
+  background: "rgba(0, 0, 0, 0.5)",
   padding: "1rem",
   color: "white",
 });
@@ -56,9 +56,10 @@ export default function AllPlayers() {
         console.log(error);
       });
   }, []);
-
+  const { user } = useAuth();
+  console.log(user, "user");
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Container sx={{ py: 8 }} maxWidth="lg">
         <Grid container spacing={4}>
           {players?.map((player) => (
