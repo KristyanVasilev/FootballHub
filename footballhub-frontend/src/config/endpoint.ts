@@ -5,3 +5,4 @@ export const urlLatestFixtures = `${baseURL}/Coach/GetftInfo`;
 export const urlAllPlayers = `${baseURL}/Team/GetAllPlayers`;
 //localhost:7043/Fixture/GetLatestFixturesInfo
 export const urlCurrentFixture = `${baseURL}/Coach/GetNExtInfo`;
+export const urlCreateProduct = `${baseURL}/Shop/create`;

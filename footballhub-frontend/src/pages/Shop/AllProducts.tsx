@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import ProductModal from "./ProductModal";
 import theme from "../../theme";
 import { useAuth } from "../../Context/AuthContext";
+import Button from "@mui/material/Button";
+import ProductForm from "./CreateProductForm";
 
 const ShakeCard = styled(Card)({
   transition: "transform 0.2s ease-out",
@@ -32,6 +34,7 @@ const TextOverlay = styled("div")({
 });
 
 export default function AllProducts() {
+  const [isProductFormOpen, setProductFormOpen] = React.useState(false);
   const [products, setProducts] = React.useState<Product[]>();
   const [selectedProducts, setSelectedProducts] =
     React.useState<Product | null>(null);
@@ -44,6 +47,10 @@ export default function AllProducts() {
   const handleCloseModal = () => {
     setSelectedProducts(null);
   };
+  const handleOpenProductForm = () => {
+    setProductFormOpen(true);
+  };
+
   useEffect(() => {
     axios
       .get(urlAllPlayers)
@@ -61,6 +68,17 @@ export default function AllProducts() {
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ py: 8 }} maxWidth="lg">
+        <ProductForm
+          open={isProductFormOpen}
+          onClose={() => setProductFormOpen(false)}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleOpenProductForm}
+        >
+          Add New Product
+        </Button>
         <Grid container spacing={4}>
           {products?.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={3}>

@@ -2,19 +2,20 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button, Modal, TextField } from "@mui/material";
 import axios from "axios";
+import { urlCreateProduct } from "../../config/endpoint";
 
 interface ProductFormProps {
   open: boolean;
   onClose: () => void;
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
+const CreateProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
   const [productName, setProductName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Handle the image change event and set the selected file
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       setImage(file);
@@ -27,25 +28,20 @@ const ProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
     try {
       const formData = new FormData();
       formData.append("productName", productName);
+      formData.append("description", description);
       formData.append("price", price);
       if (image) {
         formData.append("image", image);
       }
 
-      // Replace 'your-api-endpoint' with your actual backend API endpoint
-      const response = await axios.post(
-        "your-api-endpoint/products",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(urlCreateProduct, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log("Product created successfully:", response.data);
 
-      // Close the modal
       onClose();
     } catch (error) {
       console.error("Error creating product:", error);
@@ -76,6 +72,14 @@ const ProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+          <TextField
+            label="Description"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
           <input
             type="file"
             accept="image/*"
@@ -91,4 +95,4 @@ const ProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
   );
 };
 
-export default ProductForm;
+export default CreateProductForm;
