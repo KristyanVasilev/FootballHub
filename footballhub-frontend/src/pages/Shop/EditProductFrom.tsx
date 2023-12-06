@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { Button, Modal, TextField } from "@mui/material";
 import axios from "axios";
+import { urlEditProduct, urlGetProductById } from "../../config/endpoint";
 
 interface EditProductFormProps {
   open: boolean;
@@ -15,20 +16,18 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
 }) => {
   const [productName, setProductName] = useState<string>("");
   const [price, setPrice] = useState<string>("");
+  const [productDescription, setProductDescription] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
 
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        // Replace 'your-api-endpoint' with your actual backend API endpoint
-        const response = await axios.get(
-          `your-api-endpoint/products/${productId}`
-        );
+        const response = await axios.get(`${urlGetProductById}${productId}`);
         const productData = response.data;
 
-        setProductName(productData.productName);
+        setProductName(productData.name);
+        setProductDescription(productData.description);
         setPrice(productData.price);
-        // You may need to handle the image data as well
       } catch (error) {
         console.error("Error fetching product data:", error);
       }
@@ -53,6 +52,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
     try {
       const formData = new FormData();
       formData.append("productName", productName);
+      formData.append("description", productDescription);
       formData.append("price", price);
       if (image) {
         formData.append("image", image);
@@ -60,7 +60,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
 
       // Replace 'your-api-endpoint' with your actual backend API endpoint
       const response = await axios.put(
-        `your-api-endpoint/products/${productId}`,
+        `${urlEditProduct}/${productId}`,
         formData,
         {
           headers: {
@@ -71,7 +71,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
 
       console.log("Product updated successfully:", response.data);
 
-      // Close the modal
+      window.location.reload();
       onClose();
     } catch (error) {
       console.error("Error updating product:", error);
@@ -102,11 +102,13 @@ const EditProductForm: React.FC<EditProductFormProps> = ({
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            style={{ marginBottom: "10px" }}
+          <TextField
+            label="Description"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={productDescription}
+            onChange={(e) => setProductDescription(e.target.value)}
           />
           <Button type="submit" variant="contained" color="primary">
             Update Product

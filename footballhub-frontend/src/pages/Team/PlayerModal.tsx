@@ -42,15 +42,15 @@ const PlayerModal: React.FC<{ player: Player; onClose: () => void }> = ({
           X
         </Button>
         <Typography sx={{ mt: 2 }}>
-          <strong>Cards:</strong>
+          <strong>Cards:</strong> N/A
         </Typography>
 
         <Typography sx={{ mt: 2 }}>
-          <strong>Goals:</strong>
+          <strong>Goals:</strong> N/A
         </Typography>
 
         <Typography sx={{ mt: 2 }}>
-          <strong>Games:</strong>
+          <strong>Games:</strong> N/A
         </Typography>
 
         <img

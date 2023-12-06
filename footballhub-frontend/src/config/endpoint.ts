@@ -8,3 +8,5 @@ export const urlCurrentFixture = `${baseURL}/Coach/GetNExtInfo`;
 export const urlGetAllProducts = `${baseURL}/Shop/getAll"`;
 export const urlCreateProduct = `${baseURL}/Shop/create`;
 export const urlDeleteProduct = `${baseURL}/Shop/delete`;
+export const urlEditProduct = `${baseURL}/Shop/edit`;
+export const urlGetProductById = `${baseURL}/Shop/getProductById?productId=`;
