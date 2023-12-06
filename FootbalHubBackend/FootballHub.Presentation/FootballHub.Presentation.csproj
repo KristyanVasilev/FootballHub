@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.64.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
@@ -25,6 +27,10 @@
     <ProjectReference Include="..\FootballHub.Infrastructure\FootallHub.Infrastructure.csproj" />
     <ProjectReference Include="..\FootballHub.Application\FootballHub.Application.csproj" />
     <ProjectReference Include="..\FootballHub.Infrastructure\FootallHub.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

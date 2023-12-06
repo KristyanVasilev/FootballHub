@@ -12,11 +12,14 @@
 
         public DbSet<Birth> Birth { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new PlayerEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
 
             var entityTypes = modelBuilder.Model.GetEntityTypes().ToList();
 
