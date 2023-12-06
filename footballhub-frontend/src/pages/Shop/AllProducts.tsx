@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import { styled, ThemeProvider } from "@mui/material/styles";
 import { Product } from "./types";
 import axios, { AxiosResponse } from "axios";
-import { urlAllPlayers } from "../../config/endpoint";
+import { urlGetAllProducts } from "../../config/endpoint";
 import { useEffect } from "react";
 import ProductModal from "./ProductModal";
 import theme from "../../theme";
@@ -53,13 +53,13 @@ export default function AllProducts() {
 
   useEffect(() => {
     axios
-      .get(urlAllPlayers)
+      .get("https://localhost:7043/Shop/getAll")
       .then((response: AxiosResponse<Product[]>) => {
         setProducts(response.data);
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error, "erorrrrr");
       });
   }, []);
 
@@ -72,13 +72,16 @@ export default function AllProducts() {
           open={isProductFormOpen}
           onClose={() => setProductFormOpen(false)}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleOpenProductForm}
-        >
-          Add New Product
-        </Button>
+        {user && (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpenProductForm}
+            sx={{ mb: 2 }}
+          >
+            Add New Product
+          </Button>
+        )}
         <Grid container spacing={4}>
           {products?.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={3}>
@@ -114,7 +117,7 @@ export default function AllProducts() {
                       {product.name}
                     </Typography>
                     <Typography variant="h4" fontWeight="bold">
-                      {product.price}
+                      {product.price}$
                     </Typography>
                   </TextOverlay>
                 </CardMedia>

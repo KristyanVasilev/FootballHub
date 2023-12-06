@@ -4,6 +4,8 @@ import { useAuth } from "../../Context/AuthContext";
 import EditProductForm from "./EditProductFrom";
 import ToastrModal from "./ToastrModal";
 import { useState } from "react";
+import axios from "axios";
+import { urlDeleteProduct } from "../../config/endpoint";
 
 const ProductModal: React.FC<{
   product: Product;
@@ -48,9 +50,14 @@ const ProductModal: React.FC<{
   };
 
   const handleConfirmDelete = () => {
-    // Add logic to send delete request to the backend with the product ID
-    console.log("Deleting product:", product);
-    // Close the confirmation modal
+    try {
+      axios.delete(`${urlDeleteProduct}/${product.id}`);
+
+      console.log("Product deleted successfully");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
     setDeleteConfirmationOpen(false);
   };
 
@@ -68,7 +75,7 @@ const ProductModal: React.FC<{
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography variant="h6" component="h2">
+          <Typography variant="h3" component="h2">
             {product.name}
           </Typography>
           <Button onClick={onClose} sx={closeButtonStyle}>
@@ -90,21 +97,14 @@ const ProductModal: React.FC<{
             </>
           )}
 
-          <Typography sx={{ mt: 2 }}>
-            <strong>Cards:</strong>
-          </Typography>
-
-          <Typography sx={{ mt: 2 }}>
-            <strong>Goals:</strong>
-          </Typography>
-
-          <Typography sx={{ mt: 2 }}>
-            <strong>Games:</strong>
+          <Typography sx={{ mt: 2 }} variant="h5">
+            Price:
+            {product.price}$
           </Typography>
 
           <img
             src={product.imageUrl}
-            alt={`Card background for ${product.name}`}
+            alt={`/images/0cff698a-a697-4f57-821f-916e1e18ff49.png`}
             style={{
               width: "40%",
               borderRadius: "8px",
@@ -114,6 +114,7 @@ const ProductModal: React.FC<{
           />
 
           <Typography variant="body1" sx={{ mt: 2 }}>
+            <strong>Description: </strong>
             {product.description}
           </Typography>
         </Box>

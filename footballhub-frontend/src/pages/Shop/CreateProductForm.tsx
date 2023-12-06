@@ -41,7 +41,7 @@ const CreateProductForm: React.FC<ProductFormProps> = ({ open, onClose }) => {
       });
 
       console.log("Product created successfully:", response.data);
-
+      window.location.reload();
       onClose();
     } catch (error) {
       console.error("Error creating product:", error);
