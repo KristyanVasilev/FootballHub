@@ -17,7 +17,6 @@
         public async Task CreateProduct(ProductFormDto form)
         {
 
-            // Create a new product instance
             var newProduct = new Product
             {
                 Name = form.ProductName,
@@ -26,14 +25,8 @@
                 CreatedOn = DateTime.Now,
             };
 
-            // If an image was provided, handle it appropriately (save to storage, etc.)
             if (form.Image != null)
             {
-                // Handle image processing here
-                // You might want to save it to a file storage service or cloud storage
-                // and save the URL in the database
-
-                // Example: Save image to the server
                 var imagePath = Path.Combine("wwwroot/images", Guid.NewGuid().ToString() + Path.GetExtension(form.Image.FileName));
                 using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
@@ -43,10 +36,60 @@
                 newProduct.ImageUrl = imagePath.Replace("wwwroot", "");
             }
 
-            // Save the product to the database
             await this._repository.AddAsync(newProduct);
             await this._repository.SaveChangesAsync();
 
+        }
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+
+            var products = this._repository.AllAsNoTracking();
+            return products;
+        }
+
+        public Product GetProductById(int productId)
+        {
+
+            var product = _repository.AllAsNoTracking()
+                           .FirstOrDefault(x => x.Id == productId)
+                           ?? throw new ArgumentException("Product not found!", nameof(productId));
+
+            return product;
+        }
+
+        public async Task DeleteProduct(int productId)
+        {
+            var productToDelete = _repository.AllAsNoTracking()
+                           .FirstOrDefault(x => x.Id == productId)
+                           ?? throw new ArgumentException("Product not found!", nameof(productId));
+
+            if (!string.IsNullOrEmpty(productToDelete.ImageUrl))
+            {
+                var imagePath = Path.Combine("wwwroot", productToDelete.ImageUrl);
+                if (File.Exists(imagePath))
+                {
+                    File.Delete(imagePath);
+                }
+            }
+
+            _repository.Delete(productToDelete);
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task EditProduct(EditProductFormDto form, int productId)
+        {
+            var productToEdit = _repository.AllAsNoTracking()
+                           .FirstOrDefault(x => x.Id == productId)
+                           ?? throw new ArgumentException("Product not found!", nameof(productId));
+
+            productToEdit.Price = form.Price;
+            productToEdit.Description = form.Description;
+            productToEdit.Name = form.ProductName;
+            productToEdit.ModifiedOn = DateTime.Now;
+
+            _repository.Update(productToEdit);
+            await _repository.SaveChangesAsync();
         }
     }
 }
