@@ -17,17 +17,17 @@
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateProduct([FromForm] ProductFormDto form)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductFormDto formData)
         {
             try
             {
                 // Validate required fields
-                if (string.IsNullOrEmpty(form.ProductName) || string.IsNullOrEmpty(form.Description) || form.Price == 0)
+                if (string.IsNullOrEmpty(formData.ProductName) || string.IsNullOrEmpty(formData.Description) || formData.Price == 0)
                 {
                     return BadRequest("All fields are required");
                 }
 
-                await _shopService.CreateProduct(form);
+                await _shopService.CreateProduct(formData);
 
                 return CreatedAtAction(nameof(CreateProduct), new { message = "Product created successfully" });
             }
